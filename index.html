@@ -188,6 +188,12 @@
                             <span>ร้านแนะนำพิเศษ</span>
                         </button>
 
+                        <!-- JIBO list only Pill -->
+                        <button id="mineOnlyToggle" class="pill-btn px-3 py-2 bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-xl font-medium hover:bg-slate-100 flex items-center gap-1.5 shrink-0">
+                            <i class="fa-solid fa-paw text-rose-500 text-xs"></i>
+                            <span>เฉพาะลิสต์ JIBO</span>
+                        </button>
+
                         <!-- Favorites Pill -->
                         <button id="favOnlyToggle" class="pill-btn px-3 py-2 bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-xl font-medium hover:bg-slate-100 flex items-center gap-1.5 shrink-0">
                             <i class="fa-solid fa-heart text-rose-500 text-xs"></i>
@@ -220,6 +226,9 @@
                             <button class="pill-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-200 bg-slate-50 text-slate-700" data-category="อาหารไทย & พื้นเมือง">🍱 อาหารไทย & พื้นเมือง</button>
                             <button class="pill-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-200 bg-slate-50 text-slate-700" data-category="ก๋วยเตี๋ยว & เมนูเส้น">🍜 ก๋วยเตี๋ยว & เมนูเส้น</button>
                             <button class="pill-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-200 bg-slate-50 text-slate-700" data-category="ฟิวชั่น & สเต๊ก">🍽️ ฟิวชั่น & สเต๊ก</button>
+                            <button class="pill-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-200 bg-slate-50 text-slate-700" data-category="ร้านอาหาร">🍴 ร้านอาหาร</button>
+                            <button class="pill-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-200 bg-slate-50 text-slate-700" data-category="ที่พัก">🏡 ที่พัก</button>
+                            <button class="pill-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-200 bg-slate-50 text-slate-700" data-category="สถานที่เที่ยว & ธรรมชาติ">🌳 สถานที่เที่ยว & ธรรมชาติ</button>
                         </div>
                     </div>
 
@@ -312,7 +321,7 @@
     </div>
 
     <script>
-        // Full Dataset of 61 Pet-Friendly Venues across Chiang Mai, Lamphun & Lampang
+        // Full Dataset of venues across Chiang Mai, Lamphun & Lampang
         const venuesData = [
             // Chiang Mai - Cafes & Restaurants
             { id: 1, name: "แม่วางเม้าท์เท่นวิว at ห้วยมะนาว", province: "เชียงใหม่", district: "อ.แม่วาง", category: "อาหารไทย & พื้นเมือง", rating: 4.6, reviews: 320, star: true, seating: ["Outdoor"], notes: "วิวภูเขาติดห้วย" },
@@ -379,7 +388,33 @@
             { id: 60, name: "ฮันนี่เก็ตตี้", province: "ลำพูน", district: "จ.ลำพูน", category: "ฟิวชั่น & สเต๊ก", rating: 4.8, reviews: 430, star: true, seating: ["Outdoor"], notes: "สปาเก็ตตี้รสเด็ด แนะนำ!" },
 
             // Lampang
-            { id: 61, name: "ครัวเนื้อหอม", province: "ลำปาง", district: "จ.ลำปาง", category: "อาหารไทย & พื้นเมือง", rating: 4.9, reviews: 920, star: true, seating: ["Outdoor"], notes: "🏆 แชมป์กะเพราเนื้อประเทศไทย" }
+            { id: 61, name: "ครัวเนื้อหอม", province: "ลำปาง", district: "จ.ลำปาง", category: "อาหารไทย & พื้นเมือง", rating: 4.9, reviews: 920, star: true, seating: ["Outdoor"], notes: "🏆 แชมป์กะเพราเนื้อประเทศไทย" },
+
+            // JIBO'self'list (จากลิสต์ Google Maps ของ JIBO) — ยังไม่มีข้อมูล rating/reviews/district/seating
+            { id: 62, name: "Kanalab Chiangmai 2022", province: "เชียงใหม่", district: "", category: "ร้านอาหาร", rating: null, reviews: null, star: false, seating: [], notes: "", mine: true, mapsUrl: "https://www.google.com/maps/place/Kanalab+Chiangmai+2022/data=!4m2!3m1!1s0x30da3be97b50ee19:0x7c69b3383d55b009" },
+            { id: 63, name: "Boon Pak THAI DESSERT & TEA", province: "เชียงใหม่", district: "", category: "ร้านอาหาร", rating: null, reviews: null, star: false, seating: [], notes: "", mine: true, mapsUrl: "https://www.google.com/maps/place/Boon+Pak+THAI+DESSERT+%26+TEA/data=!4m2!3m1!1s0x30da3be57c04a281:0xf300f8fe29ac659c" },
+            { id: 64, name: "Baan Kang Wat", province: "เชียงใหม่", district: "", category: "สถานที่เที่ยว & ธรรมชาติ", rating: null, reviews: null, star: false, seating: [], notes: "จุดวิ่ง", mine: true, mapsUrl: "https://www.google.com/maps/place/Baan+Kang+Wat/data=!4m2!3m1!1s0x30da3135abcf1377:0x5b0f6ce47286ce9f" },
+            { id: 65, name: "Stay Wild & Cafe", province: "เชียงใหม่", district: "", category: "คาเฟ่ & กาแฟ", rating: null, reviews: null, star: false, seating: [], notes: "", mine: true, mapsUrl: "https://www.google.com/maps/place/Stay+Wild+%26+Cafe/data=!4m2!3m1!1s0x30da7322b2a9f1c5:0x8341ecd89f1b2c54" },
+            { id: 66, name: "สวนสนแม่แตง (สวนผลิตเมล็ดพันธุ์ไม้สนสองใบ)", province: "เชียงใหม่", district: "", category: "สถานที่เที่ยว & ธรรมชาติ", rating: null, reviews: null, star: false, seating: [], notes: "จุดวิ่ง", mine: true, mapsUrl: "https://www.google.com/maps/place/%E0%B8%AA%E0%B8%A7%E0%B8%99%E0%B8%AA%E0%B8%99%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B9%81%E0%B8%95%E0%B8%87+(%E0%B8%AA%E0%B8%A7%E0%B8%99%E0%B8%9C%E0%B8%A5%E0%B8%B4%E0%B8%95%E0%B9%80%E0%B8%A1%E0%B8%A5%E0%B9%87%E0%B8%94%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B8%B8%E0%B9%8C%E0%B9%84%E0%B8%A1%E0%B9%89%E0%B8%AA%E0%B8%99%E0%B8%AA%E0%B8%AD%E0%B8%87%E0%B9%83%E0%B8%9A)/data=!4m2!3m1!1s0x30da11dda210adfd:0x8a098dffc50f4e87" },
+            { id: 67, name: "TATA Chiang Dao Cafe and Farm", province: "เชียงใหม่", district: "", category: "คาเฟ่ & กาแฟ", rating: null, reviews: null, star: false, seating: [], notes: "", mine: true, mapsUrl: "https://www.google.com/maps/place/TATA+Chiang+Dao+Cafe+and+Farm/data=!4m2!3m1!1s0x30d0a7004a701d13:0x675fdc38a4ad5945" },
+            { id: 68, name: "Kinlum Kindee Sansai", province: "เชียงใหม่", district: "", category: "ร้านอาหาร", rating: null, reviews: null, star: false, seating: [], notes: "", mine: true, mapsUrl: "https://www.google.com/maps/place/Kinlum+Kindee+Sansai/data=!4m2!3m1!1s0x30da3a6264bfec6f:0xa10922cfdaf1d4fe" },
+            { id: 69, name: "Half.cnx", province: "เชียงใหม่", district: "", category: "คาเฟ่ & กาแฟ", rating: null, reviews: null, star: false, seating: [], notes: "", mine: true, mapsUrl: "https://www.google.com/maps/place/Half.cnx/data=!4m2!3m1!1s0x30da251346819a7b:0x7c6253e314cd2ac6" },
+            { id: 70, name: "Din Cafe", province: "เชียงใหม่", district: "", category: "คาเฟ่ & กาแฟ", rating: null, reviews: null, star: false, seating: [], notes: "", mine: true, mapsUrl: "https://www.google.com/maps/place/Din+Cafe/data=!4m2!3m1!1s0x30da376a41031897:0x32dd5ba9be3f22da" },
+            { id: 71, name: "Cypress Lanes", province: "เชียงใหม่", district: "", category: "คาเฟ่ & กาแฟ", rating: null, reviews: null, star: false, seating: [], notes: "", mine: true, mapsUrl: "https://www.google.com/maps/place/Cypress+Lanes/data=!4m2!3m1!1s0x30da39b8be8b6f5d:0x1fd4dc3309eadeb0" },
+            { id: 72, name: "WTF Coffee Camp", province: "เชียงใหม่", district: "", category: "คาเฟ่ & กาแฟ", rating: null, reviews: null, star: false, seating: [], notes: "", mine: true, mapsUrl: "https://www.google.com/maps/place/WTF+Coffee+Camp/data=!4m2!3m1!1s0x30da3f71beb48379:0x69a5ecb4bcfa72e5" },
+            { id: 73, name: "Akha Ama Living Factory", province: "เชียงใหม่", district: "", category: "คาเฟ่ & กาแฟ", rating: null, reviews: null, star: false, seating: [], notes: "", mine: true, mapsUrl: "https://www.google.com/maps/place/Akha+Ama+Living+Factory/data=!4m2!3m1!1s0x30da3e73f345a9b5:0xcbc341155564cdbe" },
+            { id: 74, name: "The Bark Park (เดอะ บาร์ค พาร์ค)", province: "เชียงใหม่", district: "", category: "สถานที่เที่ยว & ธรรมชาติ", rating: null, reviews: null, star: false, seating: [], notes: "พื้นที่สำหรับน้องหมา (pet park)", mine: true, mapsUrl: "https://www.google.com/maps/place/The+Bark+Park+(%E0%B9%80%E0%B8%94%E0%B8%AD%E0%B8%B0+%E0%B8%9A%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%84+%E0%B8%9E%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%84)/data=!4m2!3m1!1s0x30da2f9f448738cb:0xcb9f13e519f83fa5" },
+            { id: 75, name: "Angkaew Reservoir", province: "เชียงใหม่", district: "", category: "สถานที่เที่ยว & ธรรมชาติ", rating: null, reviews: null, star: false, seating: [], notes: "จุดวิ่ง", mine: true, mapsUrl: "https://www.google.com/maps/place/Angkaew+Reservoir/data=!4m2!3m1!1s0x30da3b38907dc601:0x582020d5b6f65604" },
+            { id: 76, name: "Chiang Mai P.A.O. Public Park", province: "เชียงใหม่", district: "", category: "สถานที่เที่ยว & ธรรมชาติ", rating: null, reviews: null, star: false, seating: [], notes: "จุดวิ่ง", mine: true, mapsUrl: "https://www.google.com/maps/place/Chiang+Mai+P.A.O.+Public+Park/data=!4m2!3m1!1s0x30da3b00096d672b:0x2afc938e0b26a067" },
+            { id: 77, name: "Huai Tueng Thao Checkpoint", province: "เชียงใหม่", district: "", category: "สถานที่เที่ยว & ธรรมชาติ", rating: null, reviews: null, star: false, seating: [], notes: "เส้นทางเดินเทรล", mine: true, mapsUrl: "https://www.google.com/maps/place/Huai+Tueng+Thao+Checkpoint/data=!4m2!3m1!1s0x30da3bb921cc10e9:0x459571ae62395ca7" },
+            { id: 78, name: "Huen Muan Jai", province: "เชียงใหม่", district: "", category: "ร้านอาหาร", rating: null, reviews: null, star: false, seating: [], notes: "", mine: true, mapsUrl: "https://www.google.com/maps/place/Huen+Muan+Jai/data=!4m2!3m1!1s0x30da3a8c183393ed:0x6bad4b8a8337d731" },
+            { id: 79, name: "Roast8ry Coffee Lab", province: "เชียงใหม่", district: "", category: "คาเฟ่ & กาแฟ", rating: null, reviews: null, star: false, seating: [], notes: "", mine: true, mapsUrl: "https://www.google.com/maps/place/Roast8ry+Coffee+Lab/data=!4m2!3m1!1s0x30da3a6207833303:0x34f9536bf99b37e" },
+            { id: 80, name: "Krua Phech Doi Ngam (Classic)", province: "เชียงใหม่", district: "", category: "ร้านอาหาร", rating: null, reviews: null, star: false, seating: [], notes: "", mine: true, mapsUrl: "https://www.google.com/maps/place/Krua+Phech+Doi+Ngam+(Classic)/data=!4m2!3m1!1s0x30da30146ec6dcc5:0x8faf955566b83ac3" },
+            { id: 81, name: "Tih", province: "เชียงใหม่", district: "", category: "คาเฟ่ & กาแฟ", rating: null, reviews: null, star: false, seating: [], notes: "", mine: true, mapsUrl: "https://www.google.com/maps/place/Tih/data=!4m2!3m1!1s0x30da3ba08fc9a19f:0xa4f0d1f8dba38cb" },
+            { id: 82, name: "North Gate Spirit", province: "เชียงใหม่", district: "", category: "คาเฟ่ & กาแฟ", rating: null, reviews: null, star: false, seating: [], notes: "คาเฟ่ / บาร์", mine: true, mapsUrl: "https://www.google.com/maps/place/North+Gate+Spirit/data=!4m2!3m1!1s0x30da3b91750392b9:0x4e051d0e0d2ce6d4" },
+            { id: 83, name: "A Day Villa Chiangmai", province: "เชียงใหม่", district: "", category: "ที่พัก", rating: null, reviews: null, star: false, seating: [], notes: "", mine: true, mapsUrl: "https://www.google.com/maps/place/A+Day+Villa+Chiangmai/data=!4m2!3m1!1s0x30da3b6c4b0881df:0x615baeefe1897027" },
+            { id: 84, name: "พฤกษาธารา ไพรเวทโฮม prueksathara nature retreat", province: "เชียงใหม่", district: "", category: "ที่พัก", rating: null, reviews: null, star: false, seating: [], notes: "", mine: true, mapsUrl: "https://www.google.com/maps/place/%E0%B8%9E%E0%B8%A4%E0%B8%81%E0%B8%A9%E0%B8%B2%E0%B8%98%E0%B8%B2%E0%B8%A3%E0%B8%B2+%E0%B9%84%E0%B8%9E%E0%B8%A3%E0%B9%80%E0%B8%A7%E0%B8%97%E0%B9%82%E0%B8%AE%E0%B8%A1+prueksathara+nature+retreat/data=!4m2!3m1!1s0x30da097ea95b28b5:0xa2d2a9fa70f80a8d" },
+            { id: 85, name: "BLISS Homestay Maetaeng", province: "เชียงใหม่", district: "", category: "ที่พัก", rating: null, reviews: null, star: false, seating: [], notes: "", mine: true, mapsUrl: "https://www.google.com/maps/place/BLISS+Homestay+Maetaeng/data=!4m2!3m1!1s0x30da72f9a12828a9:0x600d4d9df515605c" }
         ];
 
         // Global State
@@ -389,6 +424,7 @@
             category: 'all',
             seating: 'all',
             starOnly: false,
+            mineOnly: false,
             favOnly: false,
             sort: 'default'
         };
@@ -404,6 +440,7 @@
         const sortSelect = document.getElementById('sortSelect');
         const starOnlyToggle = document.getElementById('starOnlyToggle');
         const favOnlyToggle = document.getElementById('favOnlyToggle');
+        const mineOnlyToggle = document.getElementById('mineOnlyToggle');
         const favCountBadge = document.getElementById('favCountBadge');
         const filteredCountBadge = document.getElementById('filteredCountBadge');
 
@@ -473,6 +510,9 @@
                 // Star Only
                 if (filters.starOnly && !item.star) return false;
 
+                // JIBO list only
+                if (filters.mineOnly && !item.mine) return false;
+
                 // Fav Only
                 if (filters.favOnly && !favoritesList.includes(item.id)) return false;
 
@@ -481,9 +521,9 @@
 
             // Sorting
             if (filters.sort === 'rating') {
-                result.sort((a, b) => b.rating - a.rating);
+                result.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
             } else if (filters.sort === 'reviews') {
-                result.sort((a, b) => b.reviews - a.reviews);
+                result.sort((a, b) => (b.reviews ?? 0) - (a.reviews ?? 0));
             } else if (filters.sort === 'name') {
                 result.sort((a, b) => a.name.localeCompare(b.name, 'th'));
             }
@@ -508,7 +548,7 @@
                 const isSaved = favoritesList.includes(place.id);
                 
                 // Maps Link
-                const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name + ' ' + place.district + ' ' + place.province)}`;
+                const googleMapsUrl = place.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name + ' ' + place.district + ' ' + place.province)}`;
 
                 // Seating pills html
                 const seatingTags = place.seating.map(seat => {
@@ -529,6 +569,8 @@
                 if (place.category.includes("คาเฟ่")) catStyle = "bg-emerald-50 text-emerald-800 border-emerald-200";
                 else if (place.category.includes("ก๋วยเตี๋ยว")) catStyle = "bg-orange-50 text-orange-800 border-orange-200";
                 else if (place.category.includes("ฟิวชั่น")) catStyle = "bg-purple-50 text-purple-800 border-purple-200";
+                else if (place.category === "ที่พัก") catStyle = "bg-indigo-50 text-indigo-800 border-indigo-200";
+                else if (place.category.includes("สถานที่เที่ยว")) catStyle = "bg-teal-50 text-teal-800 border-teal-200";
 
                 return `
                     <div class="card-minimal bg-white rounded-2xl border border-slate-200/80 p-5 flex flex-col justify-between relative shadow-sm group">
@@ -542,6 +584,7 @@
                                     <span class="text-[11px] font-medium px-2 py-0.5 rounded-md border ${catStyle}">
                                         ${place.category}
                                     </span>
+                                    ${place.mine ? '<span class="text-[11px] font-medium px-2 py-0.5 rounded-md border bg-rose-50 text-rose-700 border-rose-200" title="สถานที่จากลิสต์ JIBO\'self\'list">🐾 ลิสต์ JIBO</span>' : ''}
                                 </div>
                                 <button onclick="toggleSaveFavorite(${place.id})" class="text-slate-300 hover:text-rose-500 transition-colors p-1" title="${isSaved ? 'ยกเลิกการบันทึก' : 'บันทึกร้านนี้'}">
                                     <i class="${isSaved ? 'fa-solid text-rose-500' : 'fa-regular'} fa-heart text-base"></i>
@@ -559,15 +602,20 @@
                             <!-- Location Info -->
                             <p class="text-xs text-slate-500 mb-3 flex items-center gap-1">
                                 <i class="fa-solid fa-location-dot text-slate-400"></i>
-                                <span>${place.district}</span>
+                                <span>${place.district || place.province}</span>
                             </p>
 
                             <!-- Official Google Maps Rating Badge -->
+                            ${place.rating != null ? `
                             <div class="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200/80 rounded-xl px-2.5 py-1 mb-3">
                                 <i class="fa-solid fa-star text-amber-500 text-xs"></i>
                                 <span class="font-num font-bold text-slate-900 text-xs">${place.rating.toFixed(1)}</span>
                                 <span class="text-[11px] text-slate-400 font-num font-normal">(${place.reviews} รีวิวบน Google)</span>
-                            </div>
+                            </div>` : `
+                            <div class="inline-flex items-center gap-1.5 bg-slate-50 border border-dashed border-slate-200 rounded-xl px-2.5 py-1 mb-3">
+                                <i class="fa-regular fa-star text-slate-300 text-xs"></i>
+                                <span class="text-[11px] text-slate-400 font-normal">ยังไม่มีคะแนน • ดูใน Google Maps</span>
+                            </div>`}
 
                             <!-- Seating Tags -->
                             <div class="flex flex-wrap gap-1 mb-2">
@@ -688,6 +736,13 @@
                 renderVenues();
             });
 
+            // Toggle JIBO list only
+            mineOnlyToggle.addEventListener('click', () => {
+                filters.mineOnly = !filters.mineOnly;
+                mineOnlyToggle.classList.toggle('active', filters.mineOnly);
+                renderVenues();
+            });
+
             // Toggle Saved Favorites Only
             favOnlyToggle.addEventListener('click', () => {
                 filters.favOnly = !filters.favOnly;
@@ -707,6 +762,7 @@
                     category: 'all',
                     seating: 'all',
                     starOnly: false,
+                    mineOnly: false,
                     favOnly: false,
                     sort: 'default'
                 };
@@ -720,6 +776,7 @@
                 document.querySelector('#categoryContainer [data-category="all"]').classList.add('active');
                 document.querySelector('#seatingContainer [data-seating="all"]').classList.add('active');
                 starOnlyToggle.classList.remove('active');
+                mineOnlyToggle.classList.remove('active');
                 favOnlyToggle.classList.remove('active');
 
                 renderVenues();
@@ -739,7 +796,7 @@
 
                 let copyText = `🐾 Pet Friendly North (${filteredList.length} ร้านแนะนำ):\n\n`;
                 filteredList.slice(0, 10).forEach((item, index) => {
-                    copyText += `${index + 1}. ${item.name} (${item.district}) - ⭐ ${item.rating}\n`;
+                    copyText += `${index + 1}. ${item.name} (${item.district || item.province})${item.rating != null ? ' - ⭐ ' + item.rating : ''}\n`;
                 });
 
                 if (filteredList.length > 10) {
@@ -798,7 +855,7 @@
                     <div class="animate-pulse text-center">
                         <span class="text-[11px] font-medium text-slate-400 block">${randomItem.province} • ${randomItem.category}</span>
                         <h4 class="text-base font-bold text-slate-900">${randomItem.name}</h4>
-                        <p class="text-xs text-slate-500 mt-0.5">📍 ${randomItem.district}</p>
+                        <p class="text-xs text-slate-500 mt-0.5">📍 ${randomItem.district || randomItem.province}</p>
                     </div>
                 `;
                 counter++;
@@ -812,17 +869,17 @@
         }
 
         function renderFinalRandomResult(item) {
-            const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.district)}`;
+            const mapsUrl = item.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.district)}`;
             randomDisplayArea.innerHTML = `
                 <div class="text-center w-full">
                     <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200 inline-block mb-1">🎉 สถานที่ที่คุณสุ่มได้</span>
                     <h4 class="text-lg font-extrabold text-slate-900 mt-1">${item.name}</h4>
-                    <p class="text-xs text-slate-500 mb-2">📍 ${item.district} (${item.province})</p>
-                    <div class="inline-flex items-center gap-1 bg-white border border-slate-200 px-2.5 py-1 rounded-lg text-xs font-semibold mb-3">
+                    <p class="text-xs text-slate-500 mb-2">📍 ${item.district ? item.district + ' (' + item.province + ')' : item.province}</p>
+                    ${item.rating != null ? `<div class="inline-flex items-center gap-1 bg-white border border-slate-200 px-2.5 py-1 rounded-lg text-xs font-semibold mb-3">
                         <i class="fa-solid fa-star text-amber-500"></i>
                         <span class="font-num">${item.rating.toFixed(1)}</span>
                         <span class="text-[11px] text-slate-400 font-normal">(${item.reviews} รีวิว)</span>
-                    </div>
+                    </div>` : ''}
                     <br>
                     <a href="${mapsUrl}" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-medium transition-all shadow-sm">
                         <i class="fa-solid fa-map-location-dot text-emerald-400"></i>
