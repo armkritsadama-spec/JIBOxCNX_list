@@ -188,6 +188,12 @@
                             <span>ร้านแนะนำพิเศษ</span>
                         </button>
 
+                        <!-- JIBO list only Pill -->
+                        <button id="mineOnlyToggle" class="pill-btn px-3 py-2 bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-xl font-medium hover:bg-slate-100 flex items-center gap-1.5 shrink-0">
+                            <i class="fa-solid fa-paw text-rose-500 text-xs"></i>
+                            <span>เฉพาะลิสต์ JIBO</span>
+                        </button>
+
                         <!-- Favorites Pill -->
                         <button id="favOnlyToggle" class="pill-btn px-3 py-2 bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-xl font-medium hover:bg-slate-100 flex items-center gap-1.5 shrink-0">
                             <i class="fa-solid fa-heart text-rose-500 text-xs"></i>
@@ -418,6 +424,7 @@
             category: 'all',
             seating: 'all',
             starOnly: false,
+            mineOnly: false,
             favOnly: false,
             sort: 'default'
         };
@@ -433,6 +440,7 @@
         const sortSelect = document.getElementById('sortSelect');
         const starOnlyToggle = document.getElementById('starOnlyToggle');
         const favOnlyToggle = document.getElementById('favOnlyToggle');
+        const mineOnlyToggle = document.getElementById('mineOnlyToggle');
         const favCountBadge = document.getElementById('favCountBadge');
         const filteredCountBadge = document.getElementById('filteredCountBadge');
 
@@ -501,6 +509,9 @@
 
                 // Star Only
                 if (filters.starOnly && !item.star) return false;
+
+                // JIBO list only
+                if (filters.mineOnly && !item.mine) return false;
 
                 // Fav Only
                 if (filters.favOnly && !favoritesList.includes(item.id)) return false;
@@ -725,6 +736,13 @@
                 renderVenues();
             });
 
+            // Toggle JIBO list only
+            mineOnlyToggle.addEventListener('click', () => {
+                filters.mineOnly = !filters.mineOnly;
+                mineOnlyToggle.classList.toggle('active', filters.mineOnly);
+                renderVenues();
+            });
+
             // Toggle Saved Favorites Only
             favOnlyToggle.addEventListener('click', () => {
                 filters.favOnly = !filters.favOnly;
@@ -744,6 +762,7 @@
                     category: 'all',
                     seating: 'all',
                     starOnly: false,
+                    mineOnly: false,
                     favOnly: false,
                     sort: 'default'
                 };
@@ -757,6 +776,7 @@
                 document.querySelector('#categoryContainer [data-category="all"]').classList.add('active');
                 document.querySelector('#seatingContainer [data-seating="all"]').classList.add('active');
                 starOnlyToggle.classList.remove('active');
+                mineOnlyToggle.classList.remove('active');
                 favOnlyToggle.classList.remove('active');
 
                 renderVenues();
